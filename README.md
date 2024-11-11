@@ -1,4 +1,4 @@
-# Projektowanie i symulacja algorytmów
+# Projektowanie i Symulacja Algorytmów
 
 ## Temat projektu i problem
 Problemem, jakim się ten projekt będzie problem wyznaczania tras pojazdów - VRP (Vehicle Routing Problem).
@@ -48,3 +48,4 @@ Selekcja: \
 `Najlepsze trasy przechodzą do kolejnych iteracji, co zbliża algorytm do optymalnych rozwiązań.`\
 
 ## Wykres Gantta
+![Wykres Gantta](images/PSA-Gantt.png)
