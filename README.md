@@ -1,5 +1,10 @@
 # Projektowanie i Symulacja Algorytmów
 
+## Członkowie grupy
+
+- Jacek Myjkowski (259062)
+- Mateusz Muzioł (259223)
+
 ## Temat projektu i problem
 
 Problemem, jakim się ten projekt będzie problem wyznaczania tras pojazdów - VRP (Vehicle Routing Problem).
@@ -33,6 +38,17 @@ VRP jest problemem NP-trudnym [[1]](#1). DO jego rozwiazania najlepiej sprawdzaj
 | ![Graf ilustrujacy VRP](images/vrp-instance.png) |
 | :----------------------------------------------: |
 |              _Graf ilustrujacy VRP_              |
+
+VRP posiada następujace warianty:
+
+- VRPP (Vehicle Routing Problem with Profits)
+- VRPPD (Vehicle Routing Problem with Pickup and Delivery)
+- VRP with LIFO
+- VRPTW (Vehicle Routing Problem with Time Windows)
+
+|   ![Warianty VRP](images/vrp-variants-map.jpg)   |
+| :----------------------------------------------: |
+| _Zwiazki pomiedzy poszczegolnymi wariantami VRP_ |
 
 ## Dane
 
