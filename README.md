@@ -23,7 +23,7 @@ Problem wyznaczania tras pojazdów (VRP) polega na wyznaczeniu optymalnych tras 
     `Niektóre dostawy mogą mieć wyższy priorytet i muszą być dostarczone wcześniej`
 
 
-Jak widac ograniczen nałozyc mozna wiele. My bazowo zdecydowaliśmy się na nałozenie limitu liczby pojazdów.
+Jak widać ograniczeń nałozyć mozna wiele. My bazowo zdecydowaliśmy się na nałozenie limitu liczby pojazdów.
 
 ## Dane
 Do implementacji algorytmów będziemy pracowac na syntetycznie generowanych grafach nie-skierowanych.
@@ -49,3 +49,19 @@ Selekcja: \
 
 ## Wykres Gantta
 ![Wykres Gantta](images/PSA-Gantt.png)
+
+## Przygotowanie środowiska pracy
+### Wymagania
+- python
+
+### Środowisko wirtualne
+#### Instalacja i aktywacja
+```bash
+python3 -m venv venv
+source venv/bin/activate
+python -m pip install -r requirements.txt
+```
+#### Deaktywacja środowiska
+```bash
+deactivate
+```
