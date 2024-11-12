@@ -28,13 +28,11 @@ Jak widać ograniczeń nałozyć mozna wiele. My bazowo zdecydowaliśmy się na 
 
 ### Teoria i złozoność obliczeniowa
 
-VRP jest problemem NP-trudnym. DO jego rozwiazania najlepiej sprawdzaja się algorytmy metaheurystyczne, takie jak algorytm genetyczny, przeszukiwanie Tabu, Symulowane wyzarzanie lub ALNS (Adaptive Large Neighborhood Search). Instancję problemu mozna zwizualizować za pomoca grafu.
+VRP jest problemem NP-trudnym [[1]](#1). DO jego rozwiazania najlepiej sprawdzaja się algorytmy metaheurystyczne, takie jak algorytm genetyczny, przeszukiwanie Tabu, Symulowane wyzarzanie lub ALNS (Adaptive Large Neighborhood Search). Instancję problemu mozna zwizualizować za pomoca grafu.
 
 | ![Graf ilustrujacy VRP](images/vrp-instance.png) |
-|:--:|
-| _Graf ilustrujacy VRP_ |
-
-
+| :----------------------------------------------: |
+|              _Graf ilustrujacy VRP_              |
 
 ## Dane
 
@@ -65,8 +63,8 @@ Selekcja: \
 
 ## Wykres Gantta
 
-| ![Wykres Gantta](images/PSA-Gantt.png) |
-|:--:|
+|             ![Wykres Gantta](images/PSA-Gantt.png)             |
+| :------------------------------------------------------------: |
 | _Wykres Gantta przedstawiajacy harmonogram prac nad projektem_ |
 
 ## Przygotowanie środowiska pracy
@@ -90,3 +88,37 @@ python -m pip install -r requirements.txt
 ```bash
 deactivate
 ```
+
+## Literatura
+
+<a id="1">[1]</a>
+Claudia Archetti, Dominique Feillet, Michel Gendreau, M. Grazia Speranza,
+Complexity of the VRP and SDVRP,
+Transportation Research Part C: Emerging Technologies,
+Volume 19, Issue 5,
+2011,
+Pages 741-750,
+ISSN 0968-090X,
+
+<a id="2">[2]</a>
+Kris Braekers, Katrien Ramaekers, Inneke Van Nieuwenhuyse,
+The vehicle routing problem: State of the art classification and review,
+Computers & Industrial Engineering,
+Volume 99,
+2016,
+Pages 300-313,
+ISSN 0360-8352
+
+<a id="3">[3]</a>
+Wikipedia contributors.
+"Vehicle routing problem."
+Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia,
+3 Oct. 2024.
+Web. 12 Nov. 2024.
+
+<a id="4">[4]</a>
+Bruno Scalia C. F. Leite.
+"The Vehicle Routing Problem: Exact and Heuristic Solutions"
+Medium, Towards Data Science
+4 Aug. 2023.
+Web. 12 Nov. 2024.
