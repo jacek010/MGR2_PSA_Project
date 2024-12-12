@@ -110,7 +110,7 @@ Wyniki działania algorytmu zapisywane są w folderze `results` w formacie JSON:
 ```json
 [
    {
-      "name":"<FILENAME>",
+      "name":"<FILENAME_WITH_GRAPH_STRUCTURE>",
       "nodes_count": "<NODES_IN_GRAPH>",
       "edges_count": "<EDGES_IN_GRAPH>",
       "vehicles_amounts": [
