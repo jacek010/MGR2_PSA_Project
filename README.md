@@ -105,6 +105,43 @@ python -m pip install -r requirements.txt
 deactivate
 ```
 
+## Przechowywanie wyników
+Wyniki działania algorytmu zapisywane są w folderze `results` w formacie JSON:
+```json
+[
+   {
+      "name":"<FILENAME>",
+      "nodes_count": "<NODES_IN_GRAPH>",
+      "edges_count": "<EDGES_IN_GRAPH>",
+      "vehicles_amounts": [
+         {
+            "vehicles_amount": "<AMOUNT_OF_VEHICLES>",
+                "execution_time": "<EXECUTION_TIME>",
+                "best_routes": [
+                    [
+                        "<LIST_OF_NODES_FOR VEHICLE_1>"
+                    ],
+                    [
+                        "<LIST_OF_NODES_FOR_VEHICLE_2>"
+                    ], [...]
+         }, {...}
+      ]
+   },
+   {...}, ...
+]
+```
+Kazda sciezka zaczyna się i kończy w wierzchołku A, który uznawany jest za bazę
+
+## Reprezentacja wyników
+### BruteForce
+Na ponizszym wykresie pokazane zostało porównanie czasu działania algorytmu dla róznych konfiguracji parametrów wejściowych, takich jak:
+- ilośc pojazdów
+- ilośc wierzchołków w grafie
+
+|             ![Algorytm BruteForce](images/plots/5-1000_1_BF.png)             |
+| :------------------------------------------------------------: |
+| _Wykres przedstawiający zaleznośc czasu wykonania algorytmu od ilości wierzchołków w grafie_ |
+
 ## Literatura
 
 <a id="1">[1]</a>

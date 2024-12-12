@@ -1,15 +1,15 @@
 import networkx as nx
 import random
+import os
 
-NODES = 50
-GRAPH_DESITY = 0.8
+NODES_LIST = [5,6,7,8,9,10,11,12,13,14,15,17,20, 25, 35, 50, 57, 100, 200, 500, 1000]
+GRAPH_DESITY = 1
 MIN_WEIGHT = 50
 MAX_WEIGHT = 200
 
-GRAPHS_DIRECTORY = "graphs"
+GRAPHS_DIRECTORY = f"graphs/{NODES_LIST[0]}-{NODES_LIST[-1]}_{str(GRAPH_DESITY).replace('.', '')}"
 
-EDGES = NODES * (NODES - 1) // 2
-EDGES_TO_DELETE = round(EDGES * (1 - GRAPH_DESITY))
+
 
 
 
@@ -101,22 +101,28 @@ def print_graph_to_file(graph:nx.Graph, filename:str)->None:
             file.write(f"({u}, {v}, {weight})\n")
 
 def main():
+    # Create directory if it doesn't exist
+    if not os.path.exists(GRAPHS_DIRECTORY):
+        os.makedirs(GRAPHS_DIRECTORY)
 
-    # Generate nodes
-    nodes = generate_nodes(NODES)
-    
-    # Generate edges with random weights
-    edges = generate_edges_with_weights(nodes)
-    
-    # Delete random edges
-    edges = delete_random_edges(edges, EDGES_TO_DELETE)
-    
-    # Create a graph
-    graph = create_graph(edges)
+    for NODES in NODES_LIST:
+        EDGES = NODES * (NODES - 1) // 2
+        EDGES_TO_DELETE = round(EDGES * (1 - GRAPH_DESITY))
+        # Generate nodes
+        nodes = generate_nodes(NODES)
+        
+        # Generate edges with random weights
+        edges = generate_edges_with_weights(nodes)
+        
+        # Delete random edges
+        edges = delete_random_edges(edges, EDGES_TO_DELETE)
+        
+        # Create a graph
+        graph = create_graph(edges)
 
-    # Print the edges with weights
-    print_graph(graph)
-    print_graph_to_file(graph, f"{GRAPHS_DIRECTORY}/graph_{NODES}_{str(GRAPH_DESITY).replace('.', '')}.txt")
+        # Print the edges with weights
+        # print_graph(graph)
+        print_graph_to_file(graph, f"{GRAPHS_DIRECTORY}/graph_{NODES:03d}.txt")
 
 if __name__ == "__main__":
     main()

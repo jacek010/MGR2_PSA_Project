@@ -1,0 +1,1650 @@
+[
+    {
+        "name": "graphs/5-23_1/graph_005.txt",
+        "nodes_count": 5,
+        "edges_count": 10,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.00012111663818359375,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 397
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.0001239776611328125,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 655
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.00014710426330566406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 796
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.00016832351684570312,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1054
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_005.txt",
+        "nodes_count": 5,
+        "edges_count": 10,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.00012111663818359375,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 397
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.0001239776611328125,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 655
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.00014710426330566406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 796
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.00016832351684570312,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1054
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_005.txt",
+        "nodes_count": 5,
+        "edges_count": 10,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.00012111663818359375,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 397
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.0001239776611328125,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 655
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.00014710426330566406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 796
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.00016832351684570312,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1054
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_005.txt",
+        "nodes_count": 5,
+        "edges_count": 10,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.00012111663818359375,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 397
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.0001239776611328125,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 655
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.00014710426330566406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 796
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.00016832351684570312,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1054
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_007.txt",
+        "nodes_count": 7,
+        "edges_count": 21,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.0034971237182617188,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "B",
+                        "E",
+                        "G",
+                        "D",
+                        "A"
+                    ]
+                ],
+                "total_cost": 736
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.004186868667602539,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "G",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 939
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.004832029342651367,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1206
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.005572080612182617,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1394
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_007.txt",
+        "nodes_count": 7,
+        "edges_count": 21,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.0034971237182617188,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "B",
+                        "E",
+                        "G",
+                        "D",
+                        "A"
+                    ]
+                ],
+                "total_cost": 736
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.004186868667602539,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "G",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 939
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.004832029342651367,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1206
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.005572080612182617,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1394
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_007.txt",
+        "nodes_count": 7,
+        "edges_count": 21,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.0034971237182617188,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "B",
+                        "E",
+                        "G",
+                        "D",
+                        "A"
+                    ]
+                ],
+                "total_cost": 736
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.004186868667602539,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "G",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 939
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.004832029342651367,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1206
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.005572080612182617,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1394
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_007.txt",
+        "nodes_count": 7,
+        "edges_count": 21,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.0034971237182617188,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "B",
+                        "E",
+                        "G",
+                        "D",
+                        "A"
+                    ]
+                ],
+                "total_cost": 736
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.004186868667602539,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "G",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 939
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.004832029342651367,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1206
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.005572080612182617,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "G",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1394
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_009.txt",
+        "nodes_count": 9,
+        "edges_count": 36,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.2421731948852539,
+                "best_routes": [
+                    [
+                        "A",
+                        "D",
+                        "F",
+                        "E",
+                        "B",
+                        "H",
+                        "C",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 929
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.2804908752441406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "F",
+                        "E",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 994
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.31838011741638184,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1079
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.3556559085845947,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1237
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_009.txt",
+        "nodes_count": 9,
+        "edges_count": 36,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.2421731948852539,
+                "best_routes": [
+                    [
+                        "A",
+                        "D",
+                        "F",
+                        "E",
+                        "B",
+                        "H",
+                        "C",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 929
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.2804908752441406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "F",
+                        "E",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 994
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.31838011741638184,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1079
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.3556559085845947,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1237
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_009.txt",
+        "nodes_count": 9,
+        "edges_count": 36,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.2421731948852539,
+                "best_routes": [
+                    [
+                        "A",
+                        "D",
+                        "F",
+                        "E",
+                        "B",
+                        "H",
+                        "C",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 929
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.2804908752441406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "F",
+                        "E",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 994
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.31838011741638184,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1079
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.3556559085845947,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1237
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_009.txt",
+        "nodes_count": 9,
+        "edges_count": 36,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 0.2421731948852539,
+                "best_routes": [
+                    [
+                        "A",
+                        "D",
+                        "F",
+                        "E",
+                        "B",
+                        "H",
+                        "C",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 929
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 0.2804908752441406,
+                "best_routes": [
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "F",
+                        "E",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 994
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 0.31838011741638184,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1079
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.3556559085845947,
+                "best_routes": [
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "H",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1237
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_011.txt",
+        "nodes_count": 11,
+        "edges_count": 55,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 26.200146913528442,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 761
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 29.883047103881836,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 963
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 33.4485068321228,
+                "best_routes": [
+                    [
+                        "A",
+                        "I",
+                        "H",
+                        "K",
+                        "J",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1188
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 37.156790018081665,
+                "best_routes": [
+                    [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1409
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_011.txt",
+        "nodes_count": 11,
+        "edges_count": 55,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 26.200146913528442,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 761
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 29.883047103881836,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 963
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 33.4485068321228,
+                "best_routes": [
+                    [
+                        "A",
+                        "I",
+                        "H",
+                        "K",
+                        "J",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1188
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 37.156790018081665,
+                "best_routes": [
+                    [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1409
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_011.txt",
+        "nodes_count": 11,
+        "edges_count": 55,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 26.200146913528442,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 761
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 29.883047103881836,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 963
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 33.4485068321228,
+                "best_routes": [
+                    [
+                        "A",
+                        "I",
+                        "H",
+                        "K",
+                        "J",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1188
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 37.156790018081665,
+                "best_routes": [
+                    [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1409
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-23_1/graph_011.txt",
+        "nodes_count": 11,
+        "edges_count": 55,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 1,
+                "execution_time": 26.200146913528442,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ]
+                ],
+                "total_cost": 761
+            },
+            {
+                "vehicles_amount": 2,
+                "execution_time": 29.883047103881836,
+                "best_routes": [
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "H",
+                        "I",
+                        "A"
+                    ]
+                ],
+                "total_cost": 963
+            },
+            {
+                "vehicles_amount": 3,
+                "execution_time": 33.4485068321228,
+                "best_routes": [
+                    [
+                        "A",
+                        "I",
+                        "H",
+                        "K",
+                        "J",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "D",
+                        "B",
+                        "F",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "E",
+                        "C",
+                        "G",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1188
+            },
+            {
+                "vehicles_amount": 4,
+                "execution_time": 37.156790018081665,
+                "best_routes": [
+                    [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "G",
+                        "J",
+                        "K",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "B",
+                        "D",
+                        "A"
+                    ],
+                    [
+                        "A",
+                        "C",
+                        "E",
+                        "A"
+                    ]
+                ],
+                "total_cost": 1409
+            }
+        ]
+    }
+]
