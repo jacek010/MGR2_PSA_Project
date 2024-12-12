@@ -116,14 +116,14 @@ Wyniki działania algorytmu zapisywane są w folderze `results` w formacie JSON:
       "vehicles_amounts": [
          {
             "vehicles_amount": "<AMOUNT_OF_VEHICLES>",
-                "execution_time": "<EXECUTION_TIME>",
-                "best_routes": [
-                    [
-                        "<LIST_OF_NODES_FOR VEHICLE_1>"
-                    ],
-                    [
-                        "<LIST_OF_NODES_FOR_VEHICLE_2>"
-                    ], [...]
+            "execution_time": "<EXECUTION_TIME>",
+            "best_routes": [
+               [
+                  "<LIST_OF_NODES_FOR VEHICLE_1>"
+               ],
+               [
+                  "<LIST_OF_NODES_FOR_VEHICLE_2>"
+               ], [...]
          }, {...}
       ]
    },
@@ -133,7 +133,7 @@ Wyniki działania algorytmu zapisywane są w folderze `results` w formacie JSON:
 Kazda sciezka zaczyna się i kończy w wierzchołku A, który uznawany jest za bazę
 
 ## Reprezentacja wyników
-### BruteForce
+### Przegląd zupełny
 Na ponizszym wykresie pokazane zostało porównanie czasu działania algorytmu dla róznych konfiguracji parametrów wejściowych, takich jak:
 - ilośc pojazdów
 - ilośc wierzchołków w grafie
