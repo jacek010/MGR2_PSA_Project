@@ -35,6 +35,7 @@ def calculate_route_cost(graph: nx.Graph, route: list) -> int:
     cost (int): The total cost of the route
     """
     cost = 0
+    route = get_route(route)
     for i in range(len(route) - 1):
         if route[i] in graph and route[i + 1] in graph[route[i]]:
             cost += graph[route[i]][route[i + 1]]['weight']
@@ -44,6 +45,25 @@ def calculate_route_cost(graph: nx.Graph, route: list) -> int:
             return sys.maxsize  # Zwróć maksymalny koszt, aby ta trasa nie była wybierana
     return cost
 
+def get_route(route:list)->list:
+    return ['A']+ route + ['A']
+
+def get_routes(routes: list[list[str]]) -> list[list[str]]:
+    return [get_route(route) for route in routes]
+
+def couple_routes(routes: list[list[str]]) -> tuple:
+    vehicles_routes_lengths = [len(routes[i]) for i in range(len(routes))]
+    coupled_routes = [node for route in routes for node in route if node != 'A']
+    
+    return vehicles_routes_lengths, coupled_routes
+
+def decouple_routes(vehicles_routes_lengths: list[int], coupled_routes: list[str]) -> list[list[str]]:
+    routes = []
+    start = 0
+    for length in vehicles_routes_lengths:
+        routes.append(coupled_routes[start:start+length])
+        start += length
+    return routes
 
 def save_results_to_json(results: dict, output_filename: str):
     """

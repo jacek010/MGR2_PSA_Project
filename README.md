@@ -77,6 +77,8 @@ Krzyżowanie i mutacja: \
 Selekcja: \
 `Najlepsze trasy przechodzą do kolejnych iteracji, co zbliża algorytm do optymalnych rozwiązań.`\
 
+
+
 ## Wykres Gantta
 
 |             ![Wykres Gantta](images/PSA-Gantt.png)             |
@@ -104,6 +106,44 @@ python -m pip install -r requirements.txt
 ```bash
 deactivate
 ```
+
+## Implementacja
+### Implementacja Przeglądu zupełnego
+
+### Implementacja algorytmu losowego
+
+### Implementacja algorytmu genetycznego
+Składa się z następujących etapów:
+
+1. **Inicjalizacja populacji**:
+   - Funkcja: `create_initial_population`
+   - Opis: Generuje początkową populację tras poprzez losowe przetasowanie wierzchołków i podzielenie ich między dostępne pojazdy.
+   - Szczegóły: Wierzchołki grafu (bez wierzchołka bazowego 'A') są losowo mieszane i dzielone na trasy dla każdego pojazdu. Powstaje lista tras dla całej populacji.
+
+2. **Ocena populacji**:
+   - Funkcja: `evaluate_population`
+   - Opis: Oblicza całkowity koszt tras dla każdego osobnika w populacji i sortuje populację na podstawie wyników fitness (całkowity koszt).
+   - Szczegóły: Dla każdej trasy w populacji obliczany jest koszt całkowity przy użyciu funkcji `calculate_route_cost`. Populacja jest sortowana według kosztów, aby wybrać najlepsze trasy.
+
+3. **Selekcja turniejowa**:
+   - Funkcja: `tournament_selection`
+   - Opis: Wybiera podzbiór populacji losowo i zwraca osobnika z najlepszym wynikiem fitness.
+   - Szczegóły: Losowo wybierany jest podzbiór populacji, a następnie wybierany jest osobnik z najlepszym wynikiem fitness z tego podzbioru.
+
+4. **Krzyżowanie**:
+   - Funkcja: `crossover`
+   - Opis: Łączy trasy dwóch rodziców, aby stworzyć dwie nowe trasy potomne. Wykorzystuje funkcję `order_crossover` do przeprowadzenia krzyżowania.
+   - Szczegóły: Trasy dwóch rodziców są łączone, aby stworzyć nowe trasy potomne. Funkcja `order_crossover` zapewnia, że nowe trasy zawierają unikalne wierzchołki.
+
+5. **Mutacja**:
+   - Funkcja: `mutate`
+   - Opis: Wprowadza losowe zmiany w chromosomie poprzez zamianę dwóch wierzchołków, aby wprowadzić różnorodność.
+   - Szczegóły: Z losowym prawdopodobieństwem dwa wierzchołki w trasie są zamieniane miejscami, aby wprowadzić różnorodność do populacji.
+
+6. **Algorytm genetyczny**:
+   - Funkcja: `genetic_algorithm`
+   - Opis: Inicjalizuje populację, ocenia ją, a następnie iteracyjnie wykonuje selekcję, krzyżowanie i mutację, aby ewoluować populację w kierunku lepszych rozwiązań.
+   - Szczegóły: Algorytm rozpoczyna się od inicjalizacji populacji, następnie ocenia populację, a w każdej iteracji wykonuje selekcję, krzyżowanie i mutację, aby poprawić populację. Proces ten jest powtarzany przez określoną liczbę generacji.
 
 ## Przechowywanie wyników
 Wyniki działania algorytmu zapisywane są w folderze `results` w formacie JSON:

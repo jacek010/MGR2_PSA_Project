@@ -4,17 +4,21 @@ import os
 import json
 import time
 
-from vrp_utils import load_graph, calculate_route_cost, save_results_to_json
+from vrp_utils import load_graph, calculate_route_cost, save_results_to_json, get_route, get_routes, couple_routes, decouple_routes
 
-INPUT_GRAPHS = "5-1000_1"
-INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
-OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA.json"
-VEHICLES_AMOUNTS = [1, 2, 3, 4]
-
+# GENETIC PARAMS
 POPULATION_SIZE = 100
 GENERATIONS = 500
 MUTATION_RATE = 0.01
 TOURNAMENT_SIZE = 5
+
+# INPUT PARAMS
+INPUT_GRAPHS = "5-1000_1"
+INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
+OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+VEHICLES_AMOUNTS = [1, 2, 3, 4]
+
+
 
 
 def create_initial_population(graph: nx.Graph, vehicles_amount: int) -> list:
@@ -36,7 +40,7 @@ def create_initial_population(graph: nx.Graph, vehicles_amount: int) -> list:
     population = []
     for _ in range(POPULATION_SIZE):
         random.shuffle(nodes)  # Shuffle the nodes randomly
-        routes = [['A'] + nodes[i::vehicles_amount] + ['A'] for i in range(vehicles_amount)]
+        routes = [nodes[i::vehicles_amount] for i in range(vehicles_amount)]
         population.append(routes)  # Create routes for each vehicle
     return population
 
@@ -72,53 +76,97 @@ def tournament_selection(population: list) -> list:
     Returns:
         list: The selected individual.
     """
+    if len(population) < TOURNAMENT_SIZE:
+        raise ValueError("Population size is smaller than tournament size")
+
     selected = random.sample(population, TOURNAMENT_SIZE)  # Randomly select individuals
-    return min(selected, key=lambda x: x[1])[0]  # Return the individual with the best fitness
+    best_individual = min(selected, key=lambda x: x[1])[0]  # Return the individual with the best fitness
+    # print(f"best_individual{best_individual}")
+    if not best_individual:
+        raise ValueError("Selected individual is empty")
 
-def crossover(parent1: list, parent2: list) -> list:
+    return best_individual
+
+def crossover(parent1: list, parent2: list) -> tuple:
     """
-    Perform crossover between two parents to produce a child.
+    Perform crossover between two parents to produce two children.
 
-    This function combines routes from two parents to create a new child route.
+    This function combines routes from two parents to create two new child routes.
 
     Args:
         parent1 (list): The first parent.
         parent2 (list): The second parent.
 
     Returns:
-        list: The child produced from the crossover.
+        tuple: Two children produced from the crossover.
     """
-    child = []
-    for i in range(len(parent1)):
-        route1 = parent1[i][1:-1]  # Remove 'A' from start and end
-        route2 = parent2[i][1:-1]  # Remove 'A' from start and end
-        child_route = []
-        for j in range(len(route1)):
-            if random.random() > 0.5:
-                child_route.append(route1[j])  # Choose gene from first parent
-            else:
-                child_route.append(route2[j])  # Choose gene from second parent
-        child.append(['A'] + child_route + ['A'])  # Add 'A' to start and end
+    child1 = []
+    child2 = []
+    
+    
+    vehicles_routes_lengths, parent1_routes = couple_routes(parent1)
+    vehicles_routes_lengths2, parent2_routes = couple_routes(parent2)
+    
+    # print(f"p1{parent1_routes}")
+    # print(f"p2{parent2}")
+    
+    crossover_point = random.randint(1, len(parent1_routes)-1)
+    
+    # CROSSOVER 
+    child_route1 = order_crossover(parent1_routes, parent2_routes)
+    child_route2 = order_crossover(parent2_routes, parent1_routes)
+    
+    child1 = decouple_routes(vehicles_routes_lengths, child_route1)
+    child2 = decouple_routes(vehicles_routes_lengths, child_route2)
+    
+    return child1, child2
+
+def order_crossover(p1, p2):
+    """
+    Perform order crossover between two parents to produce a child.
+    
+    This function combines routes from two parents to create a new child route.
+    
+    """
+    size = len(p1)
+    child = [None] * size
+
+    # Choose two random points for the crossover
+    start, end = sorted(random.sample(range(size), 2))
+
+    # Copy the segment from the first parent to the child
+    child[start:end] = p1[start:end]
+
+    # Fill the remaining positions with nodes from the second parent
+    p2_index = 0
+    for i in range(size):
+        if child[i] is None:
+            while p2[p2_index] in child:
+                p2_index += 1
+            child[i] = p2[p2_index]
+
     return child
 
-def mutate(route: list) -> list:
+def mutate(chromosome: list) -> list:
     """
-    Mutate a given route with a certain mutation rate.
+    Mutate a given chromosome with a certain mutation rate.
 
-    This function randomly swaps two nodes in the route to introduce variation.
+    This function randomly swaps two nodes in the chromosome to introduce variation.
 
     Args:
-        route (list): The route to mutate.
+        chromosome (list): The chromosome to mutate.
 
     Returns:
-        list: The mutated route.
+        list: The mutated chromosome.
     """
-    for i in range(len(route)):
-        if random.random() < MUTATION_RATE:
-            if len(route[i]) > 3:  # Ensure there are enough nodes to swap
-                j = random.randint(1, len(route[i]) - 2)
-                route[i][j], route[i][j + 1] = route[i][j + 1], route[i][j]  # Swap two nodes
-    return route
+    vehicles_routes_lengths, coupled_routes = couple_routes(chromosome)
+    if random.random() < MUTATION_RATE:
+        if len(coupled_routes) > 2:  # Ensure there are enough nodes to swap
+            i = random.randint(0, len(coupled_routes)-1)
+            j = random.randint(0, len(coupled_routes)-1)
+            coupled_routes[i], coupled_routes[j] = coupled_routes[j], coupled_routes[i]  # Swap two nodes
+    chromosome = decouple_routes(vehicles_routes_lengths, coupled_routes)
+    return chromosome
 
 def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
     """
@@ -141,8 +189,7 @@ def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
         for _ in range(POPULATION_SIZE // 2):
             parent1 = tournament_selection(population)
             parent2 = tournament_selection(population)
-            child1 = crossover(parent1, parent2)
-            child2 = crossover(parent2, parent1)
+            child1, child2 = crossover(parent1, parent2)
             new_population.append(mutate(child1))
             new_population.append(mutate(child2))
         population = new_population
@@ -169,7 +216,7 @@ if __name__ == "__main__":
             execution_time = end_time - start_time
 
             # Print the best routes, their cost, and execution time
-            print(f"Best routes: {best_routes}")
+            print(f"Best routes: {get_routes(best_routes)}")
             print(f"Total cost: {best_cost}")
             print(f"Vehicles amount: {vehicles_amount}")
             print(f"Execution time: {execution_time} seconds\n")
@@ -177,7 +224,7 @@ if __name__ == "__main__":
             vehicles_results.append({
                 "vehicles_amount": vehicles_amount,
                 "execution_time": execution_time,
-                "best_routes": best_routes,
+                "best_routes": get_routes(best_routes),
                 "total_cost": best_cost
             })
 

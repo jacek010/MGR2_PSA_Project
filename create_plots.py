@@ -1,7 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 
-RESULTS_INSTANCE = "5-1000_1_GA"
+RESULTS_INSTANCE = "5-1000_1_GA_p100_g500_m001_t5"
 RESULTS_FILENAME = f"results/{RESULTS_INSTANCE}.json"
 
 PLOT_OUTPUT_FILENAME = f"images/plots/{RESULTS_INSTANCE}.png"
