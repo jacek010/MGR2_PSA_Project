@@ -7,18 +7,27 @@ import time
 from vrp_utils import load_graph, calculate_route_cost, save_results_to_json, get_route, get_routes, couple_routes, decouple_routes
 
 # GENETIC PARAMS
-POPULATION_SIZE = 100
-GENERATIONS = 500
-MUTATION_RATE = 0.01
-TOURNAMENT_SIZE = 5
+# POPULATION_SIZE = 100
+# GENERATIONS = 500
+# MUTATION_RATE = 0.01
+# TOURNAMENT_SIZE = 5
 
 # INPUT PARAMS
 INPUT_GRAPHS = "5-1000_1"
 INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
-OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+# OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
 VEHICLES_AMOUNTS = [1, 2, 3, 4]
 
+def set_default_values():
+    global POPULATION_SIZE
+    global GENERATIONS
+    global MUTATION_RATE
+    global TOURNAMENT_SIZE
 
+    POPULATION_SIZE = 50
+    GENERATIONS = 100
+    MUTATION_RATE = 0.05
+    TOURNAMENT_SIZE = 5
 
 
 def create_initial_population(graph: nx.Graph, vehicles_amount: int) -> list:
@@ -196,10 +205,11 @@ def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
     best_routes, best_cost = evaluate_population(graph, population)[0]
     return best_routes, best_cost
 
-if __name__ == "__main__":
+def main():
     results = []
     # Initialize the JSON file
     save_results_to_json(results, OUTPUT_FILENAME)
+    
     
     for f in sorted(os.listdir(INPUT_DIR)):
         graph_filename = os.path.join(INPUT_DIR, f)
@@ -238,3 +248,48 @@ if __name__ == "__main__":
 
         # Append the results to the JSON file
         save_results_to_json(results, OUTPUT_FILENAME)
+
+if __name__ == "__main__":
+    
+    # Reset default values
+    set_default_values()
+    
+    # TEST TOURNAMENT SIZES
+    TOURNAMENT_SIZES = [2, 5, 10, 15]
+    for t in TOURNAMENT_SIZES:
+        TOURNAMENT_SIZE = t
+        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        main()
+    
+    # Reset default values
+    set_default_values()
+    
+    # TEST POPULATION SIZES
+    POPULATION_SIZES = [10, 50, 100, 200]
+    for p in POPULATION_SIZES:
+        POPULATION_SIZE = p
+        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        main()
+        
+    # Reset default values
+    set_default_values()
+    
+    # TEST GENERATIONS
+    GENERATIONS_AMOUNTS = [50, 100, 200, 500]
+    for g in GENERATIONS_AMOUNTS:
+        GENERATIONS = g
+        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        main()
+    
+    # Reset default values
+    set_default_values()    
+        
+    # TEST MUTATION RATES
+    MUTATION_RATES = [0.001, 0.01, 0.1, 0.2]
+    for m in MUTATION_RATES:
+        MUTATION_RATE = m
+        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        main()
+    
+    
+    
