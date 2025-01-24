@@ -258,7 +258,7 @@ if __name__ == "__main__":
     TOURNAMENT_SIZES = [2, 5, 10, 15]
     for t in TOURNAMENT_SIZES:
         TOURNAMENT_SIZE = t
-        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        OUTPUT_FILENAME = f"results/tournament_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
     
     # Reset default values
@@ -268,7 +268,7 @@ if __name__ == "__main__":
     POPULATION_SIZES = [10, 50, 100, 200]
     for p in POPULATION_SIZES:
         POPULATION_SIZE = p
-        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        OUTPUT_FILENAME = f"results/population_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
         
     # Reset default values
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     GENERATIONS_AMOUNTS = [50, 100, 200, 500]
     for g in GENERATIONS_AMOUNTS:
         GENERATIONS = g
-        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        OUTPUT_FILENAME = f"results/generations_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
     
     # Reset default values
@@ -288,7 +288,7 @@ if __name__ == "__main__":
     MUTATION_RATES = [0.001, 0.01, 0.1, 0.2]
     for m in MUTATION_RATES:
         MUTATION_RATE = m
-        OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+        OUTPUT_FILENAME = f"results/mutation_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
     
     
