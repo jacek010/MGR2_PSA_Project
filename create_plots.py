@@ -1,10 +1,30 @@
 import json
 import matplotlib.pyplot as plt
+import argparse as ap
 
-RESULTS_INSTANCE = "5-1000_1_GA_p100_g500_m001_t5"
-RESULTS_FILENAME = f"results/{RESULTS_INSTANCE}.json"
+parser = ap.ArgumentParser(
+    prog="VRP GA Create Plots",
+    description="Create plots for genetic algorithm implementation results for VRP",
+)
 
-PLOT_OUTPUT_FILENAME = f"images/plots/{RESULTS_INSTANCE}.png"
+
+def add_arguments():
+    parser.add_argument(
+        "-i", "--results", type=str, required=True, help="Path to the results JSON file"
+    )
+    parser.add_argument(
+        "-o", "--output", type=str, required=True, help="Path to the output PNG file"
+    )
+    parser.add_argument(
+        "-t",
+        "--title",
+        type=str,
+        default="VRP GA Execution Time vs Nodes",
+        help="Plot title",
+    )
+
+    return parser.parse_args()
+
 
 def load_results(filename: str) -> list:
     """
@@ -20,7 +40,8 @@ def load_results(filename: str) -> list:
         results = json.load(file)
     return results
 
-def plot_execution_time_vs_nodes(results: list):
+
+def plot_execution_time_vs_nodes(results: list, output_filename: str, plot_title: str):
     """
     Plot the dependency of execution time on the number of nodes.
 
@@ -41,20 +62,33 @@ def plot_execution_time_vs_nodes(results: list):
     # Plot each vehicle amount separately
     unique_vehicles_amounts = sorted(set(vehicles_amounts))
     for vehicles_amount in unique_vehicles_amounts:
-        x = [nodes_counts[i] for i in range(len(nodes_counts)) if vehicles_amounts[i] == vehicles_amount]
-        y = [execution_times[i] for i in range(len(execution_times)) if vehicles_amounts[i] == vehicles_amount]
-        plt.plot(x, y, label=f'{vehicles_amount} vehicles')
+        x = [
+            nodes_counts[i]
+            for i in range(len(nodes_counts))
+            if vehicles_amounts[i] == vehicles_amount
+        ]
+        y = [
+            execution_times[i]
+            for i in range(len(execution_times))
+            if vehicles_amounts[i] == vehicles_amount
+        ]
+        plt.plot(x, y, label=f"{vehicles_amount} vehicles")
 
     plt.xlabel("Number of Nodes")
     plt.ylabel("Execution Time (seconds)")
-    plt.title("Dependency of Execution Time on Number of Nodes\n for Different Vehicles Amounts using Bruteforce")
+    plt.title(plot_title)
     # plt.yscale("log")
     plt.legend()
     plt.grid(True)
-    plt.savefig(PLOT_OUTPUT_FILENAME)
+    plt.savefig(output_filename)
     plt.show()
 
+
 if __name__ == "__main__":
-    
-    results = load_results(RESULTS_FILENAME)
-    plot_execution_time_vs_nodes(results)
+    args = add_arguments()
+    results_filename = args.results
+    output_graph = args.output
+    plot_title = args.title
+
+    results = load_results(results_filename)
+    plot_execution_time_vs_nodes(results, output_graph, plot_title)
