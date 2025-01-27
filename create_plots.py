@@ -1,16 +1,17 @@
 import json
 import matplotlib.pyplot as plt
 import argparse as ap
+import pandas as pd
+import re
 
 parser = ap.ArgumentParser(
     prog="VRP GA Create Plots",
     description="Create plots for genetic algorithm implementation results for VRP",
 )
 
-
 def add_arguments():
     parser.add_argument(
-        "-i", "--results", type=str, required=True, help="Path to the results JSON file"
+        "-i", "--results", type=str, nargs=4, required=True, help="Paths to the results JSON files"
     )
     parser.add_argument(
         "-o", "--output", type=str, required=True, help="Path to the output PNG file"
@@ -25,70 +26,76 @@ def add_arguments():
 
     return parser.parse_args()
 
-
-def load_results(filename: str) -> list:
+def extract_population_from_filename(filename: str) -> int:
     """
-    Load results from a JSON file.
+    Extract the population value from the filename.
 
     Parameters:
-    filename (str): The name of the file
+    filename (str): The filename
 
     Returns:
-    results (list): The loaded results
+    population (int): The extracted population value
     """
-    with open(filename, "r") as file:
-        results = json.load(file)
-    return results
+    match = re.search(r'p(\d+)', filename)
+    if match:
+        return int(match.group(1))
+    else:
+        raise ValueError(f"Population value not found in filename: {filename}")
 
-
-def plot_execution_time_vs_nodes(results: list, output_filename: str, plot_title: str):
+def load_results(filenames: list) -> pd.DataFrame:
     """
-    Plot the dependency of execution time on the number of nodes.
+    Load results from multiple JSON files into a dataframe.
 
     Parameters:
-    results (list): The results to plot
+    filenames (list): The list of filenames
+
+    Returns:
+    df (DataFrame): The loaded results as a dataframe
     """
-    nodes_counts = []
-    execution_times = []
-    vehicles_amounts = []
+    data = []
+    for filename in filenames:
+        population = extract_population_from_filename(filename)
+        with open(filename, "r") as file:
+            results = json.load(file)
+            for result in results:
+                nodes_count = result["nodes_count"]
+                for vehicle_result in result["vehicles_amounts"]:
+                    data.append({
+                        "nodes_count": nodes_count,
+                        "execution_time": vehicle_result["execution_time"],
+                        "vehicles_amount": vehicle_result["vehicles_amount"],
+                        "population": population
+                    })
+    df = pd.DataFrame(data)
+    return df
 
-    for result in results:
-        nodes_count = result["nodes_count"]
-        for vehicle_result in result["vehicles_amounts"]:
-            nodes_counts.append(nodes_count)
-            execution_times.append(vehicle_result["execution_time"])
-            vehicles_amounts.append(vehicle_result["vehicles_amount"])
+def plot_execution_time_vs_nodes(df: pd.DataFrame, output_filename: str, plot_title: str):
+    """
+    Plot the dependency of execution time on the number of nodes for each population value.
 
-    # Plot each vehicle amount separately
-    unique_vehicles_amounts = sorted(set(vehicles_amounts))
-    for vehicles_amount in unique_vehicles_amounts:
-        x = [
-            nodes_counts[i]
-            for i in range(len(nodes_counts))
-            if vehicles_amounts[i] == vehicles_amount
-        ]
-        y = [
-            execution_times[i]
-            for i in range(len(execution_times))
-            if vehicles_amounts[i] == vehicles_amount
-        ]
-        plt.plot(x, y, label=f"{vehicles_amount} vehicles")
+    Parameters:
+    df (DataFrame): The dataframe containing the results to plot
+    """
+    df = df[df["vehicles_amount"] == 4]
+
+    unique_populations = df["population"].unique()
+    for population in unique_populations:
+        subset = df[df["population"] == population]
+        plt.plot(subset["nodes_count"], subset["execution_time"], label=f"Population {population}")
 
     plt.xlabel("Number of Nodes")
     plt.ylabel("Execution Time (seconds)")
     plt.title(plot_title)
-    # plt.yscale("log")
     plt.legend()
     plt.grid(True)
     plt.savefig(output_filename)
     plt.show()
 
-
 if __name__ == "__main__":
     args = add_arguments()
-    results_filename = args.results
+    results_filenames = args.results
     output_graph = args.output
     plot_title = args.title
 
-    results = load_results(results_filename)
-    plot_execution_time_vs_nodes(results, output_graph, plot_title)
+    results_df = load_results(results_filenames)
+    plot_execution_time_vs_nodes(results_df, output_graph, plot_title)
