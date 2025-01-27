@@ -9,9 +9,22 @@ parser = ap.ArgumentParser(
     description="Create plots for genetic algorithm implementation results for VRP",
 )
 
+
 def add_arguments():
     parser.add_argument(
-        "-i", "--results", type=str, nargs=4, required=True, help="Paths to the results JSON files"
+        "-i",
+        "--results",
+        type=str,
+        nargs=4,
+        required=True,
+        help="Paths to the results JSON files",
+    )
+    parser.add_argument(
+        "-p",
+        "--parameter",
+        type=str,
+        required=True,
+        choices=["p", "g", "m", "t"],
     )
     parser.add_argument(
         "-o", "--output", type=str, required=True, help="Path to the output PNG file"
@@ -26,23 +39,26 @@ def add_arguments():
 
     return parser.parse_args()
 
-def extract_population_from_filename(filename: str) -> int:
+
+def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) -> int:
     """
-    Extract the population value from the filename.
+    Extract parameter value from the filename.
 
     Parameters:
     filename (str): The filename
+    parameter_symbol (str): The symbol of the parameter to extract
 
     Returns:
     population (int): The extracted population value
     """
-    match = re.search(r'p(\d+)', filename)
+    match = re.search(rf"{parameter_symbol}(\d+)", filename)
     if match:
         return int(match.group(1))
     else:
-        raise ValueError(f"Population value not found in filename: {filename}")
+        raise ValueError(f"Parameter value not found in filename: {filename}")
 
-def load_results(filenames: list) -> pd.DataFrame:
+
+def load_results(filenames: list, param_symbol: str, param_name: str) -> pd.DataFrame:
     """
     Load results from multiple JSON files into a dataframe.
 
@@ -54,22 +70,27 @@ def load_results(filenames: list) -> pd.DataFrame:
     """
     data = []
     for filename in filenames:
-        population = extract_population_from_filename(filename)
+        param_value = extract_parameter_value_from_filename(filename, param_symbol)
         with open(filename, "r") as file:
             results = json.load(file)
             for result in results:
                 nodes_count = result["nodes_count"]
                 for vehicle_result in result["vehicles_amounts"]:
-                    data.append({
-                        "nodes_count": nodes_count,
-                        "execution_time": vehicle_result["execution_time"],
-                        "vehicles_amount": vehicle_result["vehicles_amount"],
-                        "population": population
-                    })
+                    data.append(
+                        {
+                            "nodes_count": nodes_count,
+                            "execution_time": vehicle_result["execution_time"],
+                            "vehicles_amount": vehicle_result["vehicles_amount"],
+                            param_name: param_value,
+                        }
+                    )
     df = pd.DataFrame(data)
     return df
 
-def plot_execution_time_vs_nodes(df: pd.DataFrame, output_filename: str, plot_title: str):
+
+def plot_execution_time_vs_nodes(
+    df: pd.DataFrame, param_name: str, output_filename: str, plot_title: str
+):
     """
     Plot the dependency of execution time on the number of nodes for each population value.
 
@@ -78,10 +99,14 @@ def plot_execution_time_vs_nodes(df: pd.DataFrame, output_filename: str, plot_ti
     """
     df = df[df["vehicles_amount"] == 4]
 
-    unique_populations = df["population"].unique()
-    for population in unique_populations:
-        subset = df[df["population"] == population]
-        plt.plot(subset["nodes_count"], subset["execution_time"], label=f"Population {population}")
+    unique_param_values = df[param_name].unique()
+    for param_val in unique_param_values:
+        subset = df[df[param_name] == param_val]
+        plt.plot(
+            subset["nodes_count"],
+            subset["execution_time"],
+            label=f"{param_name} {param_val}",
+        )
 
     plt.xlabel("Number of Nodes")
     plt.ylabel("Execution Time (seconds)")
@@ -91,11 +116,25 @@ def plot_execution_time_vs_nodes(df: pd.DataFrame, output_filename: str, plot_ti
     plt.savefig(output_filename)
     plt.show()
 
+
 if __name__ == "__main__":
     args = add_arguments()
     results_filenames = args.results
+    param_symbol = args.parameter
     output_graph = args.output
     plot_title = args.title
 
-    results_df = load_results(results_filenames)
-    plot_execution_time_vs_nodes(results_df, output_graph, plot_title)
+    match param_symbol:
+        case "p":
+            param_name = "population"
+        case "m":
+            param_name = "mutation_rate"
+        case "g":
+            param_name = "generations"
+        case "t":
+            param_name = "tournament_size"
+        case _:
+            raise ValueError(f"Invalid parameter symbol: {param_symbol}")
+
+    results_df = load_results(results_filenames, param_symbol, param_name)
+    plot_execution_time_vs_nodes(results_df, param_name, output_graph, plot_title)
