@@ -31,6 +31,14 @@ def add_arguments():
         "-o", "--output", type=str, required=True, help="Path to the output PNG file"
     )
     parser.add_argument(
+        "-y",
+        "--y_axis",
+        type=str,
+        default="execution_time",
+        choices=["execution_time", "total_cost"],
+        help="Y axis variable",
+    )
+    parser.add_argument(
         "-t",
         "--title",
         type=str,
@@ -41,7 +49,9 @@ def add_arguments():
     return parser.parse_args()
 
 
-def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) -> str:
+def extract_parameter_value_from_filename(
+    filename: str, parameter_symbol: str
+) -> int | float:
     """
     Extract parameter value from the filename.
 
@@ -50,17 +60,21 @@ def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) 
     parameter_symbol (str): The symbol of the parameter to extract
 
     Returns:
-    population (int): The extracted population value
+    population (int | float): The extracted parameter value
     """
     match = re.search(rf"{parameter_symbol}(\d+)", filename)
     if match:
-        return str(match.group(1))
+        value = match.group(1)
+        if value.startswith("0") and len(value) > 1:
+            return float(f"0.{value[1:]}")
+        else:
+            return int(value)
     else:
         raise ValueError(f"Parameter value not found in filename: {filename}")
 
 
 def load_results(
-    results_folder: str, param_symbol: str, param_name: str
+    results_folder: str, param_symbol: str, param_name: str, y_var: str
 ) -> pd.DataFrame:
     """
     Load results from multiple JSON files into a dataframe.
@@ -85,25 +99,33 @@ def load_results(
                     data.append(
                         {
                             "nodes_count": nodes_count,
-                            "execution_time": vehicle_result["execution_time"],
+                            y_var: vehicle_result[y_var],
                             "vehicles_amount": vehicle_result["vehicles_amount"],
                             param_name: param_value,
                         }
                     )
     df = pd.DataFrame(data)
+    df = df.sort_values(by=[param_name, "nodes_count"])
     return df
 
 
-def plot_execution_time_vs_nodes(
-    df: pd.DataFrame, param_name: str, output_filename: str, plot_title: str
+def plot_results(
+    df: pd.DataFrame,
+    param_name: str,
+    output_filename: str,
+    y_var: str,
+    y_label: str,
+    plot_title: str,
 ):
     """
-    Plot the dependency of execution time on the number of nodes for each population value.
+    Plot the dependency of execution time or total_cost on the number of nodes for each population value.
 
     Parameters:
     df (DataFrame): The dataframe containing the results to plot
     param_name (str): The name of the parameter
     output_filename (str): The path to save the plot
+    y_var (str): The variable to plot on the y-axis
+    y_label (str): The label for the y-axis
     plot_title (str): The title of the plot
     """
     df = df[df["vehicles_amount"] == 4]
@@ -113,12 +135,12 @@ def plot_execution_time_vs_nodes(
         subset = df[df[param_name] == param_val]
         plt.plot(
             subset["nodes_count"],
-            subset["execution_time"],
+            subset[y_var],
             label=f"{param_name} = {param_val}",
         )
 
     plt.xlabel("Number of Nodes")
-    plt.ylabel("Execution Time (seconds)")
+    plt.ylabel(y_label)
     plt.title(plot_title)
     plt.legend()
     plt.grid(True)
@@ -131,6 +153,7 @@ if __name__ == "__main__":
     results_filenames = args.results_folder
     param_symbol = args.parameter
     output_graph = args.output
+    y_var = args.y_axis
     plot_title = args.title
 
     match param_symbol:
@@ -145,5 +168,13 @@ if __name__ == "__main__":
         case _:
             raise ValueError(f"Invalid parameter symbol: {param_symbol}")
 
-    results_df = load_results(results_filenames, param_symbol, param_name)
-    plot_execution_time_vs_nodes(results_df, param_name, output_graph, plot_title)
+    match y_var:
+        case "execution_time":
+            y_label = "Execution Time (s)"
+        case "total_cost":
+            y_label = "Total Cost"
+        case _:
+            raise ValueError(f"Invalid y-axis variable: {y_var}")
+
+    results_df = load_results(results_filenames, param_symbol, param_name, y_var)
+    plot_results(results_df, param_name, output_graph, y_var, y_label, plot_title)
