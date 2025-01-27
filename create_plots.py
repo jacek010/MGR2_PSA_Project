@@ -1,8 +1,10 @@
 import json
+import os
 import matplotlib.pyplot as plt
 import argparse as ap
 import pandas as pd
 import re
+import sys
 
 parser = ap.ArgumentParser(
     prog="VRP GA Create Plots",
@@ -13,11 +15,10 @@ parser = ap.ArgumentParser(
 def add_arguments():
     parser.add_argument(
         "-i",
-        "--results",
+        "--results_folder",
         type=str,
-        nargs=4,
         required=True,
-        help="Paths to the results JSON files",
+        help="Paths to the folder with results JSON files",
     )
     parser.add_argument(
         "-p",
@@ -40,7 +41,7 @@ def add_arguments():
     return parser.parse_args()
 
 
-def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) -> int:
+def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) -> str:
     """
     Extract parameter value from the filename.
 
@@ -53,21 +54,26 @@ def extract_parameter_value_from_filename(filename: str, parameter_symbol: str) 
     """
     match = re.search(rf"{parameter_symbol}(\d+)", filename)
     if match:
-        return int(match.group(1))
+        return str(match.group(1))
     else:
         raise ValueError(f"Parameter value not found in filename: {filename}")
 
 
-def load_results(filenames: list, param_symbol: str, param_name: str) -> pd.DataFrame:
+def load_results(
+    results_folder: str, param_symbol: str, param_name: str
+) -> pd.DataFrame:
     """
     Load results from multiple JSON files into a dataframe.
 
     Parameters:
-    filenames (list): The list of filenames
+    results_folder (str): Path to the results folder
+    param_symbol (str): The symbol of the parameter to extract
+    param_name (str): The name of the parameter
 
     Returns:
     df (DataFrame): The loaded results as a dataframe
     """
+    filenames = [os.path.join(results_folder, f) for f in os.listdir(results_folder)]
     data = []
     for filename in filenames:
         param_value = extract_parameter_value_from_filename(filename, param_symbol)
@@ -96,6 +102,9 @@ def plot_execution_time_vs_nodes(
 
     Parameters:
     df (DataFrame): The dataframe containing the results to plot
+    param_name (str): The name of the parameter
+    output_filename (str): The path to save the plot
+    plot_title (str): The title of the plot
     """
     df = df[df["vehicles_amount"] == 4]
 
@@ -105,7 +114,7 @@ def plot_execution_time_vs_nodes(
         plt.plot(
             subset["nodes_count"],
             subset["execution_time"],
-            label=f"{param_name} {param_val}",
+            label=f"{param_name} = {param_val}",
         )
 
     plt.xlabel("Number of Nodes")
@@ -119,7 +128,7 @@ def plot_execution_time_vs_nodes(
 
 if __name__ == "__main__":
     args = add_arguments()
-    results_filenames = args.results
+    results_filenames = args.results_folder
     param_symbol = args.parameter
     output_graph = args.output
     plot_title = args.title
