@@ -69,7 +69,7 @@ if __name__ == "__main__":
             start_time = time.time()
             # Solve VRP using brute force
             best_routes, best_cost = vrp_random_search(
-                graph, vehicles_amount, iterations=1000
+                graph, vehicles_amount, iterations=5000
             )
             end_time = time.time()
             execution_time = end_time - start_time
