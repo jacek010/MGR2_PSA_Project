@@ -4,7 +4,7 @@ import sys
 import os
 import json
 import time
-from vrp_utils import load_graph, calculate_route_cost, save_results_to_json
+from vrp_utils import load_graph, calculate_route_cost, save_results_to_json, couple_routes, decouple_routes
 import random
 
 INPUT_GRAPHS = "5-1000_1"
@@ -35,13 +35,15 @@ def vrp_random_search(graph: nx.Graph, vehicles_amount: int, iterations: int) ->
     best_cost = sys.maxsize
     best_routes = None
     iteration_counter = 0
+    
+    random.shuffle(nodes)
+    routes = [nodes[i::vehicles_amount] for i in range(vehicles_amount)]
 
     while iteration_counter < iterations:
-        random.shuffle(nodes)
-        routes = [
-            ["A"] + list([i::vehicles_amount]) + ["A"]
-            for i in range(vehicles_amount)
-        ]
+        vehicles_routes_lengths, coupled_routes = couple_routes(routes)
+        idx1, idx2 = random.sample(range(len(nodes)), 2)
+        nodes[idx1], nodes[idx2] = nodes[idx2], nodes[idx1]
+        routes = decouple_routes(vehicles_routes_lengths, coupled_routes)
         cost = sum(calculate_route_cost(graph, route) for route in routes)
         if cost < best_cost:
             best_cost = cost
