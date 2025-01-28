@@ -4,7 +4,15 @@ import os
 import json
 import time
 
-from vrp_utils import load_graph, calculate_route_cost, save_results_to_json, get_route, get_routes, couple_routes, decouple_routes
+from vrp_utils import (
+    load_graph,
+    calculate_route_cost,
+    save_results_to_json,
+    get_route,
+    get_routes,
+    couple_routes,
+    decouple_routes,
+)
 
 # GENETIC PARAMS
 # POPULATION_SIZE = 100
@@ -17,6 +25,7 @@ INPUT_GRAPHS = "5-1000_1"
 INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
 # OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
 VEHICLES_AMOUNTS = [1, 2, 3, 4]
+
 
 def set_default_values():
     global POPULATION_SIZE
@@ -45,13 +54,14 @@ def create_initial_population(graph: nx.Graph, vehicles_amount: int) -> list:
         list: A list of initial routes for the population.
     """
     nodes = list(graph.nodes)
-    nodes.remove('A')  # Remove the depot node
+    nodes.remove("A")  # Remove the depot node
     population = []
     for _ in range(POPULATION_SIZE):
         random.shuffle(nodes)  # Shuffle the nodes randomly
         routes = [nodes[i::vehicles_amount] for i in range(vehicles_amount)]
         population.append(routes)  # Create routes for each vehicle
     return population
+
 
 def evaluate_population(graph: nx.Graph, population: list) -> list:
     """
@@ -73,6 +83,7 @@ def evaluate_population(graph: nx.Graph, population: list) -> list:
         fitness_scores.append((routes, cost))  # Append the routes and their total cost
     return sorted(fitness_scores, key=lambda x: x[1])  # Sort by cost
 
+
 def tournament_selection(population: list) -> list:
     """
     Select an individual using tournament selection.
@@ -89,12 +100,15 @@ def tournament_selection(population: list) -> list:
         raise ValueError("Population size is smaller than tournament size")
 
     selected = random.sample(population, TOURNAMENT_SIZE)  # Randomly select individuals
-    best_individual = min(selected, key=lambda x: x[1])[0]  # Return the individual with the best fitness
+    best_individual = min(selected, key=lambda x: x[1])[
+        0
+    ]  # Return the individual with the best fitness
     # print(f"best_individual{best_individual}")
     if not best_individual:
         raise ValueError("Selected individual is empty")
 
     return best_individual
+
 
 def crossover(parent1: list, parent2: list) -> tuple:
     """
@@ -111,31 +125,31 @@ def crossover(parent1: list, parent2: list) -> tuple:
     """
     child1 = []
     child2 = []
-    
-    
+
     vehicles_routes_lengths, parent1_routes = couple_routes(parent1)
     vehicles_routes_lengths2, parent2_routes = couple_routes(parent2)
-    
+
     # print(f"p1{parent1_routes}")
     # print(f"p2{parent2}")
-    
-    crossover_point = random.randint(1, len(parent1_routes)-1)
-    
-    # CROSSOVER 
+
+    crossover_point = random.randint(1, len(parent1_routes) - 1)
+
+    # CROSSOVER
     child_route1 = order_crossover(parent1_routes, parent2_routes)
     child_route2 = order_crossover(parent2_routes, parent1_routes)
-    
+
     child1 = decouple_routes(vehicles_routes_lengths, child_route1)
     child2 = decouple_routes(vehicles_routes_lengths, child_route2)
-    
+
     return child1, child2
+
 
 def order_crossover(p1, p2):
     """
     Perform order crossover between two parents to produce a child.
-    
+
     This function combines routes from two parents to create a new child route.
-    
+
     """
     size = len(p1)
     child = [None] * size
@@ -156,6 +170,7 @@ def order_crossover(p1, p2):
 
     return child
 
+
 def mutate(chromosome: list) -> list:
     """
     Mutate a given chromosome with a certain mutation rate.
@@ -171,11 +186,15 @@ def mutate(chromosome: list) -> list:
     vehicles_routes_lengths, coupled_routes = couple_routes(chromosome)
     if random.random() < MUTATION_RATE:
         if len(coupled_routes) > 2:  # Ensure there are enough nodes to swap
-            i = random.randint(0, len(coupled_routes)-1)
-            j = random.randint(0, len(coupled_routes)-1)
-            coupled_routes[i], coupled_routes[j] = coupled_routes[j], coupled_routes[i]  # Swap two nodes
+            i = random.randint(0, len(coupled_routes) - 1)
+            j = random.randint(0, len(coupled_routes) - 1)
+            coupled_routes[i], coupled_routes[j] = (
+                coupled_routes[j],
+                coupled_routes[i],
+            )  # Swap two nodes
     chromosome = decouple_routes(vehicles_routes_lengths, coupled_routes)
     return chromosome
+
 
 def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
     """
@@ -205,91 +224,101 @@ def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
     best_routes, best_cost = evaluate_population(graph, population)[0]
     return best_routes, best_cost
 
+
 def main():
     results = []
     # Initialize the JSON file
     save_results_to_json(results, OUTPUT_FILENAME)
-    
-    
+
     for f in sorted(os.listdir(INPUT_DIR)):
         graph_filename = os.path.join(INPUT_DIR, f)
         print(f"Processing {graph_filename}")
         # Load the graph
         graph = load_graph(graph_filename)
-        
+
         vehicles_results = []
         for vehicles_amount in VEHICLES_AMOUNTS:
-            start_time = time.time()
-            # Solve VRP using genetic algorithm
-            best_routes, best_cost = genetic_algorithm(graph, vehicles_amount)
-            end_time = time.time()
-            execution_time = end_time - start_time
+            best_cost_sum = 0
+            execution_time_sum = 0
+            for _ in range(0, 10):
+                start_time = time.time()
+                # Solve VRP using genetic algorithm
+                best_routes, best_cost = genetic_algorithm(graph, vehicles_amount)
+                end_time = time.time()
+
+                best_cost_sum += best_cost
+                execution_time_sum += end_time - start_time
+
+            best_cost = best_cost_sum / 10
+            execution_time = execution_time_sum / 10
 
             # Print the best routes, their cost, and execution time
             print(f"Best routes: {get_routes(best_routes)}")
             print(f"Total cost: {best_cost}")
             print(f"Vehicles amount: {vehicles_amount}")
             print(f"Execution time: {execution_time} seconds\n")
-            
-            vehicles_results.append({
-                "vehicles_amount": vehicles_amount,
-                "execution_time": execution_time,
-                "best_routes": get_routes(best_routes),
-                "total_cost": best_cost
-            })
+
+            vehicles_results.append(
+                {
+                    "vehicles_amount": vehicles_amount,
+                    "execution_time": execution_time,
+                    "best_routes": get_routes(best_routes),
+                    "total_cost": best_cost,
+                }
+            )
 
             # Save the results
-            results.append({
-                "name": graph_filename,
-                "nodes_count": graph.number_of_nodes(),
-                "edges_count": graph.number_of_edges(),
-                "vehicles_amounts": vehicles_results
-            })
+            results.append(
+                {
+                    "name": graph_filename,
+                    "nodes_count": graph.number_of_nodes(),
+                    "edges_count": graph.number_of_edges(),
+                    "vehicles_amounts": vehicles_results,
+                }
+            )
 
         # Append the results to the JSON file
         save_results_to_json(results, OUTPUT_FILENAME)
 
+
 if __name__ == "__main__":
-    
+
     # Reset default values
     set_default_values()
-    
+
     # TEST TOURNAMENT SIZES
     TOURNAMENT_SIZES = [2, 5, 10, 15]
     for t in TOURNAMENT_SIZES:
         TOURNAMENT_SIZE = t
         OUTPUT_FILENAME = f"results/tournament_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
-    
+
     # Reset default values
     set_default_values()
-    
+
     # TEST POPULATION SIZES
     POPULATION_SIZES = [10, 50, 100, 200]
     for p in POPULATION_SIZES:
         POPULATION_SIZE = p
         OUTPUT_FILENAME = f"results/population_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
-        
+
     # Reset default values
     set_default_values()
-    
+
     # TEST GENERATIONS
     GENERATIONS_AMOUNTS = [50, 100, 200, 500]
     for g in GENERATIONS_AMOUNTS:
         GENERATIONS = g
         OUTPUT_FILENAME = f"results/generations_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
-    
+
     # Reset default values
-    set_default_values()    
-        
+    set_default_values()
+
     # TEST MUTATION RATES
     MUTATION_RATES = [0.001, 0.01, 0.1, 0.2]
     for m in MUTATION_RATES:
         MUTATION_RATE = m
         OUTPUT_FILENAME = f"results/mutation_test/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
-    
-    
-    
