@@ -39,6 +39,14 @@ def add_arguments():
         help="Y axis variable",
     )
     parser.add_argument(
+        "-s",
+        "--scale",
+        type=str,
+        default="linear",
+        choices=["linear", "log"],
+        help="Y axis scale",
+    )
+    parser.add_argument(
         "-t",
         "--title",
         type=str,
@@ -115,6 +123,7 @@ def plot_results(
     output_filename: str,
     y_var: str,
     y_label: str,
+    y_scale: str,
     plot_title: str,
 ):
     """
@@ -126,6 +135,7 @@ def plot_results(
     output_filename (str): The path to save the plot
     y_var (str): The variable to plot on the y-axis
     y_label (str): The label for the y-axis
+    y_scale (str): The scale for the y-axis
     plot_title (str): The title of the plot
     """
     df = df[df["vehicles_amount"] == 4]
@@ -143,6 +153,7 @@ def plot_results(
     plt.ylabel(y_label)
     plt.title(plot_title)
     plt.legend()
+    plt.yscale(y_scale)
     plt.grid(True)
     plt.savefig(output_filename)
     plt.show()
@@ -154,6 +165,7 @@ if __name__ == "__main__":
     param_symbol = args.parameter
     output_graph = args.output
     y_var = args.y_axis
+    y_scale = args.scale
     plot_title = args.title
 
     match param_symbol:
@@ -179,4 +191,6 @@ if __name__ == "__main__":
             raise ValueError(f"Invalid y-axis variable: {y_var}")
 
     results_df = load_results(results_filenames, param_symbol, param_name, y_var)
-    plot_results(results_df, param_name, output_graph, y_var, y_label, plot_title)
+    plot_results(
+        results_df, param_name, output_graph, y_var, y_label, y_scale, plot_title
+    )
