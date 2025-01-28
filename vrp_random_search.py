@@ -10,14 +10,12 @@ import random
 INPUT_GRAPHS = "5-1000_1"
 INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
 
-OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_BF.json"
+OUTPUT_FILENAME = f"results/random_test/{INPUT_GRAPHS}_RS_i1000.json"
 
-VEHICLES_AMOUNTS = [1, 2, 3, 4]
+VEHICLES_AMOUNTS = [4]
 
 
-def vrp_random_search(
-    graph: nx.Graph, vehicles_amount: int, iterations: int = 100
-) -> tuple:
+def vrp_random_search(graph: nx.Graph, vehicles_amount: int, iterations: int) -> tuple:
     """
     Solve the Vehicle Routing Problem using random search.
 
@@ -36,16 +34,19 @@ def vrp_random_search(
     )  # Remove 'A' from nodes to ensure it is only used as start and end
     best_cost = sys.maxsize
     best_routes = None
+    iteration_counter = 0
 
-    for _ in range(iterations):
+    while iteration_counter < iterations:
         random.shuffle(nodes)
         routes = [
-            ["A"] + nodes[i::vehicles_amount] + ["A"] for i in range(vehicles_amount)
+            ["A"] + list([i::vehicles_amount]) + ["A"]
+            for i in range(vehicles_amount)
         ]
         cost = sum(calculate_route_cost(graph, route) for route in routes)
         if cost < best_cost:
             best_cost = cost
             best_routes = routes
+        iteration_counter += 1
 
     return best_routes, best_cost
 
@@ -65,7 +66,9 @@ if __name__ == "__main__":
         for vehicles_amount in VEHICLES_AMOUNTS:
             start_time = time.time()
             # Solve VRP using brute force
-            best_routes, best_cost = vrp_random_search(graph, vehicles_amount)
+            best_routes, best_cost = vrp_random_search(
+                graph, vehicles_amount, iterations=1000
+            )
             end_time = time.time()
             execution_time = end_time - start_time
 

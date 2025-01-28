@@ -1,0 +1,275 @@
+[
+    {
+        "name": "graphs/5-1000_1/graph_005.txt",
+        "nodes_count": 5,
+        "edges_count": 10,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.04525899887084961,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_006.txt",
+        "nodes_count": 6,
+        "edges_count": 15,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.04602313041687012,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_007.txt",
+        "nodes_count": 7,
+        "edges_count": 21,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.04776906967163086,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_008.txt",
+        "nodes_count": 8,
+        "edges_count": 28,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.04852485656738281,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_009.txt",
+        "nodes_count": 9,
+        "edges_count": 36,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.050108909606933594,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_010.txt",
+        "nodes_count": 10,
+        "edges_count": 45,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.05158114433288574,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_011.txt",
+        "nodes_count": 11,
+        "edges_count": 55,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.05402779579162598,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_012.txt",
+        "nodes_count": 12,
+        "edges_count": 66,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.05516695976257324,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_013.txt",
+        "nodes_count": 13,
+        "edges_count": 78,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.05588483810424805,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_014.txt",
+        "nodes_count": 14,
+        "edges_count": 91,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.05716991424560547,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_015.txt",
+        "nodes_count": 15,
+        "edges_count": 105,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.059278011322021484,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_017.txt",
+        "nodes_count": 17,
+        "edges_count": 136,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.06108975410461426,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_020.txt",
+        "nodes_count": 20,
+        "edges_count": 190,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.06618690490722656,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_025.txt",
+        "nodes_count": 25,
+        "edges_count": 300,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.07471704483032227,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_035.txt",
+        "nodes_count": 35,
+        "edges_count": 595,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.0875101089477539,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_050.txt",
+        "nodes_count": 50,
+        "edges_count": 1225,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.10752105712890625,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_057.txt",
+        "nodes_count": 57,
+        "edges_count": 1596,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.11590313911437988,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_100.txt",
+        "nodes_count": 100,
+        "edges_count": 4950,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.1761000156402588,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_1000.txt",
+        "nodes_count": 1000,
+        "edges_count": 499500,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 1.8126921653747559,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_200.txt",
+        "nodes_count": 200,
+        "edges_count": 19900,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.32273101806640625,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    },
+    {
+        "name": "graphs/5-1000_1/graph_500.txt",
+        "nodes_count": 500,
+        "edges_count": 124750,
+        "vehicles_amounts": [
+            {
+                "vehicles_amount": 4,
+                "execution_time": 0.9451208114624023,
+                "best_routes": null,
+                "total_cost": 9223372036854775807
+            }
+        ]
+    }
+]

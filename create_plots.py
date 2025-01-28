@@ -25,7 +25,7 @@ def add_arguments():
         "--parameter",
         type=str,
         required=True,
-        choices=["p", "g", "m", "t"],
+        choices=["p", "g", "m", "t", "i"],
     )
     parser.add_argument(
         "-o", "--output", type=str, required=True, help="Path to the output PNG file"
@@ -165,6 +165,8 @@ if __name__ == "__main__":
             param_name = "generations"
         case "t":
             param_name = "tournament_size"
+        case "i":
+            param_name = "iterations"
         case _:
             raise ValueError(f"Invalid parameter symbol: {param_symbol}")
 
