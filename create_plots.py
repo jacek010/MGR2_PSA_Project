@@ -15,7 +15,7 @@ parser = ap.ArgumentParser(
 def add_arguments():
     parser.add_argument(
         "-i",
-        "--results_folder",
+        "--results",
         type=str,
         required=True,
         help="Paths to the folder with results JSON files",
@@ -25,7 +25,14 @@ def add_arguments():
         "--parameter",
         type=str,
         required=True,
-        choices=["p", "g", "m", "t", "i"],
+        choices=["p", "g", "m", "t", "i", "v"],
+    )
+    parser.add_argument(
+        "-v",
+        "--vehicles_amount",
+        type=int,
+        default=4,
+        help="Vehicle amount(s) to plot",
     )
     parser.add_argument(
         "-o", "--output", type=str, required=True, help="Path to the output PNG file"
@@ -82,7 +89,7 @@ def extract_parameter_value_from_filename(
 
 
 def load_results(
-    results_folder: str, param_symbol: str, param_name: str, y_var: str
+    results: str, param_symbol: str, param_name: str, y_var: str
 ) -> pd.DataFrame:
     """
     Load results from multiple JSON files into a dataframe.
@@ -95,23 +102,27 @@ def load_results(
     Returns:
     df (DataFrame): The loaded results as a dataframe
     """
-    filenames = [os.path.join(results_folder, f) for f in os.listdir(results_folder)]
+    if os.path.isdir(results):
+        filenames = [os.path.join(results, f) for f in os.listdir(results)]
+    else:
+        filenames = [results]
     data = []
     for filename in filenames:
-        param_value = extract_parameter_value_from_filename(filename, param_symbol)
+        if param_symbol != "v":
+            param_value = extract_parameter_value_from_filename(filename, param_symbol)
         with open(filename, "r") as file:
             results = json.load(file)
             for result in results:
                 nodes_count = result["nodes_count"]
                 for vehicle_result in result["vehicles_amounts"]:
-                    data.append(
-                        {
-                            "nodes_count": nodes_count,
-                            y_var: vehicle_result[y_var],
-                            "vehicles_amount": vehicle_result["vehicles_amount"],
-                            param_name: param_value,
-                        }
-                    )
+                    entry = {
+                        "nodes_count": nodes_count,
+                        y_var: vehicle_result[y_var],
+                        "vehicles_amount": vehicle_result["vehicles_amount"],
+                    }
+                    if param_symbol != "v":
+                        entry[param_name] = param_value
+                    data.append(entry)
     df = pd.DataFrame(data)
     df = df.sort_values(by=[param_name, "nodes_count"])
     return df
@@ -120,6 +131,7 @@ def load_results(
 def plot_results(
     df: pd.DataFrame,
     param_name: str,
+    vehicles_amount: int,
     output_filename: str,
     y_var: str,
     y_label: str,
@@ -138,7 +150,8 @@ def plot_results(
     y_scale (str): The scale for the y-axis
     plot_title (str): The title of the plot
     """
-    df = df[df["vehicles_amount"] == 4]
+    if param_name != "vehicles_amount":
+        df = df[df["vehicles_amount"] == vehicles_amount]
 
     unique_param_values = df[param_name].unique()
     for param_val in unique_param_values:
@@ -161,12 +174,13 @@ def plot_results(
 
 if __name__ == "__main__":
     args = add_arguments()
-    results_filenames = args.results_folder
-    param_symbol = args.parameter
-    output_graph = args.output
-    y_var = args.y_axis
-    y_scale = args.scale
-    plot_title = args.title
+    results: str = args.results
+    param_symbol: str = args.parameter
+    vehicles_amount: int = args.vehicles_amount
+    output_graph: str = args.output
+    y_var: str = args.y_axis
+    y_scale: str = args.scale
+    plot_title: str = args.title
 
     match param_symbol:
         case "p":
@@ -179,6 +193,8 @@ if __name__ == "__main__":
             param_name = "tournament_size"
         case "i":
             param_name = "iterations"
+        case "v":
+            param_name = "vehicles_amount"
         case _:
             raise ValueError(f"Invalid parameter symbol: {param_symbol}")
 
@@ -190,7 +206,14 @@ if __name__ == "__main__":
         case _:
             raise ValueError(f"Invalid y-axis variable: {y_var}")
 
-    results_df = load_results(results_filenames, param_symbol, param_name, y_var)
+    results_df = load_results(results, param_symbol, param_name, y_var)
     plot_results(
-        results_df, param_name, output_graph, y_var, y_label, y_scale, plot_title
+        results_df,
+        param_name,
+        vehicles_amount,
+        output_graph,
+        y_var,
+        y_label,
+        y_scale,
+        plot_title,
     )
