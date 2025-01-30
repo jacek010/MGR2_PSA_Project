@@ -292,7 +292,7 @@ if __name__ == "__main__":
     # main()
 
     # TEST TOURNAMENT SIZES
-    TOURNAMENT_SIZES = [2, 5, 10, 15, 20, 30]
+    TOURNAMENT_SIZES = [40, 50]
     for t in TOURNAMENT_SIZES:
         print(f"MEASURING PARAMETER - Tournament size: {t}")
         TOURNAMENT_SIZE = t
@@ -313,20 +313,20 @@ if __name__ == "__main__":
     set_default_values()
 
     # TEST GENERATIONS
-    GENERATIONS_AMOUNTS = [50, 100, 200, 500, 1000, 2000]
+    GENERATIONS_AMOUNTS = [3500, 5000, 7500, 10000]
     for g in GENERATIONS_AMOUNTS:
         print(f"MEASURING PARAMETER - Generations: {g}")
         GENERATIONS = g
         OUTPUT_FILENAME = f"results/generations_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
         main()
 
-    # Reset default values
-    set_default_values()
+    # # Reset default values
+    # set_default_values()
 
-    # TEST MUTATION RATES
-    MUTATION_RATES = [0.001, 0.01, 0.1, 0.2, 0.5]
-    for m in MUTATION_RATES:
-        print(f"MEASURING PARAMETER - Mutation rate: {m}")
-        MUTATION_RATE = m
-        OUTPUT_FILENAME = f"results/mutation_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
-        main()
+    # # TEST MUTATION RATES
+    # MUTATION_RATES = [0.001, 0.01, 0.1, 0.2, 0.5]
+    # for m in MUTATION_RATES:
+    #     print(f"MEASURING PARAMETER - Mutation rate: {m}")
+    #     MUTATION_RATE = m
+    #     OUTPUT_FILENAME = f"results/mutation_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+    #     main()
