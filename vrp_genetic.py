@@ -228,6 +228,7 @@ def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
 
 
 def main():
+    print(f"Params: p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}")
     results = []
     # Initialize the JSON file
     save_results_to_json(results, OUTPUT_FILENAME)
@@ -291,13 +292,13 @@ if __name__ == "__main__":
     # OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
     # main()
 
-    # TEST TOURNAMENT SIZES
-    TOURNAMENT_SIZES = [40, 50]
-    for t in TOURNAMENT_SIZES:
-        print(f"MEASURING PARAMETER - Tournament size: {t}")
-        TOURNAMENT_SIZE = t
-        OUTPUT_FILENAME = f"results/tournament_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
-        main()
+    # # TEST TOURNAMENT SIZES
+    # TOURNAMENT_SIZES = [40, 50]
+    # for t in TOURNAMENT_SIZES:
+    #     print(f"MEASURING PARAMETER - Tournament size: {t}")
+    #     TOURNAMENT_SIZE = t
+    #     OUTPUT_FILENAME = f"results/tournament_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+    #     main()
 
     # # Reset default values
     # set_default_values()
@@ -310,15 +311,15 @@ if __name__ == "__main__":
     #     main()
 
     # Reset default values
-    set_default_values()
+    # set_default_values()
 
-    # TEST GENERATIONS
-    GENERATIONS_AMOUNTS = [3500, 5000, 7500, 10000]
-    for g in GENERATIONS_AMOUNTS:
-        print(f"MEASURING PARAMETER - Generations: {g}")
-        GENERATIONS = g
-        OUTPUT_FILENAME = f"results/generations_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
-        main()
+    # # TEST GENERATIONS
+    # GENERATIONS_AMOUNTS = [3500, 5000, 7500, 10000]
+    # for g in GENERATIONS_AMOUNTS:
+    #     print(f"MEASURING PARAMETER - Generations: {g}")
+    #     GENERATIONS = g
+    #     OUTPUT_FILENAME = f"results/generations_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+    #     main()
 
     # # Reset default values
     # set_default_values()
@@ -330,3 +331,19 @@ if __name__ == "__main__":
     #     MUTATION_RATE = m
     #     OUTPUT_FILENAME = f"results/mutation_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
     #     main()
+    
+    #RUN OPTIMAL PARAMS
+    POPULATION_SIZE = 100
+    GENERATIONS = 2000
+    MUTATION_RATE = 0.5
+    TOURNAMENT_SIZE = 15
+    OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+    main()
+    
+    #RUN MONSTER PARAMS
+    POPULATION_SIZE = 200
+    GENERATIONS = 10000
+    MUTATION_RATE = 0.5
+    TOURNAMENT_SIZE = 15
+    OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
+    main()
