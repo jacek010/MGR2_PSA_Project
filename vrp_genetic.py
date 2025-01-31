@@ -26,7 +26,7 @@ INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
 # OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
 VEHICLES_AMOUNTS = [4]
 
-REPETETIONS = 1
+REPETETIONS = 10
 
 
 def set_default_values():
@@ -228,7 +228,9 @@ def genetic_algorithm(graph: nx.Graph, vehicles_amount: int) -> tuple:
 
 
 def main():
-    print(f"Params: p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}")
+    print(
+        f"Params: p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}"
+    )
     results = []
     # Initialize the JSON file
     save_results_to_json(results, OUTPUT_FILENAME)
@@ -288,7 +290,7 @@ if __name__ == "__main__":
 
     # Reset default values
     set_default_values()
-    
+
     # OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
     # main()
 
@@ -331,16 +333,16 @@ if __name__ == "__main__":
     #     MUTATION_RATE = m
     #     OUTPUT_FILENAME = f"results/mutation_test_new/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
     #     main()
-    
-    #RUN OPTIMAL PARAMS
+
+    # RUN OPTIMAL PARAMS
     POPULATION_SIZE = 100
     GENERATIONS = 2000
     MUTATION_RATE = 0.5
     TOURNAMENT_SIZE = 15
     OUTPUT_FILENAME = f"results/{INPUT_GRAPHS}_GA_p{POPULATION_SIZE}_g{GENERATIONS}_m{str(MUTATION_RATE).replace('.','')}_t{TOURNAMENT_SIZE}.json"
     main()
-    
-    #RUN MONSTER PARAMS
+
+    # RUN MONSTER PARAMS
     POPULATION_SIZE = 200
     GENERATIONS = 10000
     MUTATION_RATE = 0.5
