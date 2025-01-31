@@ -16,9 +16,9 @@ import random
 INPUT_GRAPHS = "5-1000_1"
 INPUT_DIR = f"graphs/{INPUT_GRAPHS}"
 
-OUTPUT_FILENAME = f"results/random_test/{INPUT_GRAPHS}_RS_i10000.json"
+OUTPUT_FILENAME = f"results/algs_to_compare/{INPUT_GRAPHS}_RS_i1000.json"
 
-VEHICLES_AMOUNTS = [4]
+VEHICLES_AMOUNTS = [1, 2, 3, 4]
 
 
 def vrp_random_search(graph: nx.Graph, vehicles_amount: int, iterations: int) -> tuple:
@@ -75,7 +75,7 @@ if __name__ == "__main__":
             start_time = time.time()
             # Solve VRP using brute force
             best_routes, best_cost = vrp_random_search(
-                graph, vehicles_amount, iterations=10000
+                graph, vehicles_amount, iterations=1000
             )
             end_time = time.time()
             execution_time = end_time - start_time
