@@ -25,7 +25,7 @@ def add_arguments():
         "--parameter",
         type=str,
         required=True,
-        choices=["p", "g", "m", "t", "i", "v"],
+        choices=["p", "g", "m", "t", "i", "v", "a"],
     )
     parser.add_argument(
         "-v",
@@ -75,13 +75,18 @@ def extract_parameter_value_from_filename(
     parameter_symbol (str): The symbol of the parameter to extract
 
     Returns:
-    population (int | float): The extracted parameter value
+    population (int | float | str): The extracted parameter value
     """
-    match = re.search(rf"{parameter_symbol}(\d+)", filename)
+    if parameter_symbol == "a":
+        match = re.search(rf"{parameter_symbol}-(\w+)", filename)
+    else:
+        match = re.search(rf"{parameter_symbol}(\d+)", filename)
     if match:
         value = match.group(1)
         if value.startswith("0") and len(value) > 1:
             return float(f"0.{value[1:]}")
+        elif parameter_symbol == "a":
+            return str(value)
         else:
             return int(value)
     else:
@@ -195,6 +200,8 @@ if __name__ == "__main__":
             param_name = "iterations"
         case "v":
             param_name = "vehicles_amount"
+        case "a":
+            param_name = "algorithm"
         case _:
             raise ValueError(f"Invalid parameter symbol: {param_symbol}")
 
